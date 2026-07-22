@@ -1,6 +1,6 @@
 const canvas = document.getElementById('canvas'); // access to canvas (finds)
 
-const ctx = canvas.getContext('2D'); // access to drawing on canvas.
+const ctx = canvas.getContext('2d'); // access to drawing on canvas.
 
 const colorPicker = document.getElementById('colorPicker'); // access to color selection.
 
@@ -15,7 +15,7 @@ let currentTool = 'square'; // by default, a square is selected.
 
 function resizeCanvas() // A function that specifies the size of the cells.
 {
-    const square = canvas.getBoundingClientsquare(); // getting the Canvas Dimensions on the Page (in Pixels)
+    const square = canvas.getBoundingClientRect(); // getting the Canvas Dimensions on the Page (in Pixels), We need to write rect even if we need a square.
 
     canvas.width = Math.floor(square.width / cellsize) * cellsize; // set the WIDTH (vertical) of the canvas: round to whole cells
 
@@ -27,7 +27,7 @@ function resizeCanvas() // A function that specifies the size of the cells.
 
 function drawGrid() // A function that draws cells.
 { 
-    ctx.clearSquare(0, 0, canvas.width, canvas.height); // clean the entire canvas (all drawings)
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // clean the entire canvas (all drawings), We need to write rect even if we need a square.
     
     ctx.strokeStyle = '#252525'; // set the gray color for the grid
 
@@ -58,8 +58,8 @@ function drawGrid() // A function that draws cells.
     }
 }
 
-function drawShape(x, y, tool, color) 
-{
+function drawShape(x, y, tool, color) // A function that allows you to select shapes/objects.
+{ 
     ctx.fillStyle = color;
     const size = cellsize; // Set the size of the cells (1k1 so that the shapes stick.)
     const cx = x + cellsize / 2; // Look for the center of the cell horizontally.
@@ -93,7 +93,7 @@ function drawShape(x, y, tool, color)
             // If an octahedron is selected, create an octahedron outline
             ctx.moveTo(cx, y + 2);
             ctx.lineTo(x + size - 2, cy);
-            ctx.lineTo(cx, y + size, -2);
+            ctx.lineTo(cx, y + size -2);
             ctx.lineTo(x + 2, cy);
 
             ctx.closePath(); // Stop beginPath
