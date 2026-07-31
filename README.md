@@ -1,4 +1,4 @@
-# OctaPixel
+# OctaPixel (Made for my buddies)
 **"An extremely simple site for drawing maps and room diagrams! Based on pixel art."**
 
 ## OVERVIEW
